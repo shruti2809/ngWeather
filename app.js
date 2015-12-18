@@ -19,14 +19,14 @@ weatherApp.config(function ($routeProvider) {
         templateUrl: 'pages/forecast.html',
         controller: 'forecastController'
     })
-})
+});
 
 //SERVICES
 weatherApp.service('cityService', function(){
     
     this.city = "Hyderabad, Telangana";
     
-})
+});
 
 //CONTROLLER
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
@@ -52,13 +52,15 @@ weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParam
 
      $scope.weatherResult = $scope.weatherAPI.get({ q: $scope.city, cnt: $scope.days, appid: '610c01e4f8687fc3e2470b7439f7e074' });
                                              
-     $scope.convertToFarenheit = function(degK){
+     $scope.convertToFahrenheit = function(degK){
         return   Math.round((1.8 * (degK - 273)) + 32);
     };
     
      $scope.convertToDate = function(dt){
         return new Date(dt*1000);
     };
+    
+    console.log($scope.weatherResult);
     
 }]);
 
